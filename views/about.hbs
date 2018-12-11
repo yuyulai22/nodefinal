@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <title>{{title}}</title>
+</head>
+
+<body>
+	<h1>Search images!</h1>
+
+	<form id="loginformB" action="/gallery" method="post">
+	    <div>
+	        <label for="email">Enter keyword to look for images: </label>
+	        <input type="text" id="image" name="image"></input>
+	    </div>
+	<input type="submit" value="Submit" onclick ="displayPokemon()"></input>
+	</form>
+
+	<div id = "display"></div>
+</body>
+<script type="text/javascript">
+	
+
+	function getData() {
+		imgtxt = document.getElementById('image').value 
+		console.log(imgtxt);
+	    return ($.ajax({
+	        url: 'https://pixabay.com/api/?key=10969602-1b28e896afe3ba7c21f021d3e&q=' + imgtxt +'&image_type=photo',
+	        dataType: 'json',
+	        async: false,
+	        success: function(data) {
+	            return data;
+	        }
+	    })).responseJSON;
+	}
+
+
+	function displayPokemon(pokemon, count, total) {
+    // console.log(count + '/' + total);
+	    var data = getData();
+	    // var newurl = tempData.varieties[0].pokemon.url;
+	    // var data = getData(newurl);
+	    // var name = tempData.name;
+	    // var formatted_name = name.charAt(0).toUpperCase() + name.slice(1);
+	    body1 = data.hits;
+		var keys = Object.keys(body1);
+	    var len = keys.length
+			console.log(len)
+			var i;
+			for (i = 0; i < len; i++) { 
+				console.log(body1[i].largeImageURL);
+				urlreq = body1[i].largeImageURL;
+				var div = document.createElement("DIV");
+			    div.setAttribute("id", "pokeDisplay");
+
+			    // image 
+			    var img = document.createElement("img");
+			    //making poke display clickable 
+
+			    img.setAttribute("id", "pokeImg");
+			    img.setAttribute("src", urlreq);
+			    div.appendChild(img);
+			    document.getElementById("display").appendChild(div);
+			}
+
+		// var sprite = data.hits[0].largeImageURL;
+	 //    console.log("sprite is", sprite)
+	    // each pokemon in div called pokeDisplay
+	    
+}
+</script>
+</html>

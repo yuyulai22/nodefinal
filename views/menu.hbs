@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+
+<body>
+	<h1>Menu Page</h1>
+	<p> This is the menu page</p>
+	{{#each link}}
+		<p><a href = "{{this}}">{{@key}}</a></p>
+	{{/each}}
+</body>
+
+{{> footer}}
+
+</html>

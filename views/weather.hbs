@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <title>{{title}}</title>
+</head>
+
+<body>
+	<h1>Weather Page</h1>
+
+	 <form id="loginformA" action="/find" method="post">
+	    <div>
+	        <label for="email">Location: </label>
+	        <input type="text" id="location" name="location"></input>
+	    </div>
+	<input type="submit" value="Submit"></input>
+	<div id = "display"> </div>
+	</form>
+</body>
+
+
+<script>
+
+	function getData() {
+		inputlocation = document.getElementById('location').value 
+		console.log(inputlocation);
+	    return ($.ajax({
+			url: 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyAVpYDKYA_q9EugvOpwha3JnigP9ykiepU&address=' + inputlocation ,
+	        dataType: 'json',
+	        async: false,
+	        success: function(data) {
+	            return data;
+	        }
+	    })).responseJSON;
+	}
+
+	function jsonData(){
+		inputlocation = document.getElementById('location').value 
+		console.log(inputlocation);
+	    return ($.ajax({
+			url: 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyAVpYDKYA_q9EugvOpwha3JnigP9ykiepU&address=' + inputlocation ,
+	        dataType: 'json',
+	        async: false,
+	        success: function(data) {
+	            return data;
+	        }
+	    })).responseJSON;
+	}
+
+	function displayWeather(pokemon, count, total) {
+    // console.log(count + '/' + total);
+	    var data = getData();
+	  
+	   	
+
+	    
+}
+</script>
+</html>
